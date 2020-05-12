@@ -1,0 +1,165 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scripts/Ragdolls.gd" type="Script" id=1]
+[ext_resource path="res://assets/player.png" type="Texture" id=2]
+[ext_resource path="res://prefabs/noglow.tres" type="Material" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 56 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 32, 32 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 16.1353, 43.8064 )
+
+[node name="Ragdoll" type="RigidBody2D" groups=[
+"Humanoid",
+"Object",
+]]
+position = Vector2( 128, 552 )
+gravity_scale = 5.0
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -8 )
+shape = SubResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 0, -8 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 1 )
+
+[node name="Head" type="RigidBody2D" parent="."]
+position = Vector2( 0, -96 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Head"]
+shape = SubResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="Head"]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Head/Area2D"]
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="Head" groups=[
+"Glow",
+]]
+material = ExtResource( 4 )
+texture = ExtResource( 2 )
+
+[node name="LeftArm" type="RigidBody2D" parent="."]
+position = Vector2( -48.1353, -20.1936 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftArm"]
+shape = SubResource( 3 )
+
+[node name="Area2D" type="Area2D" parent="LeftArm"]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="LeftArm/Area2D"]
+shape = SubResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="LeftArm" groups=[
+"Glow",
+]]
+material = ExtResource( 4 )
+scale = Vector2( 0.5, 1.375 )
+texture = ExtResource( 2 )
+
+[node name="RightArm" type="RigidBody2D" parent="."]
+position = Vector2( 48, -20.1936 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightArm"]
+shape = SubResource( 3 )
+
+[node name="Area2D" type="Area2D" parent="RightArm"]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="RightArm/Area2D"]
+shape = SubResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="RightArm" groups=[
+"Glow",
+]]
+material = ExtResource( 4 )
+scale = Vector2( 0.5, 1.375 )
+texture = ExtResource( 2 )
+
+[node name="LeftLeg" type="RigidBody2D" parent="."]
+position = Vector2( -16, 88.1936 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftLeg"]
+shape = SubResource( 3 )
+
+[node name="Area2D" type="Area2D" parent="LeftLeg"]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="LeftLeg/Area2D"]
+shape = SubResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="LeftLeg" groups=[
+"Glow",
+]]
+material = ExtResource( 4 )
+scale = Vector2( 0.5, 1.375 )
+texture = ExtResource( 2 )
+
+[node name="RightLeg" type="RigidBody2D" parent="."]
+position = Vector2( 16, 88 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightLeg"]
+shape = SubResource( 3 )
+
+[node name="Area2D" type="Area2D" parent="RightLeg"]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="RightLeg/Area2D"]
+shape = SubResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="RightLeg" groups=[
+"Glow",
+]]
+material = ExtResource( 4 )
+scale = Vector2( 0.5, 1.375 )
+texture = ExtResource( 2 )
+
+[node name="HeadJoint" type="PinJoint2D" parent="."]
+node_a = NodePath("../Head")
+node_b = NodePath("..")
+disable_collision = false
+softness = 5.0
+
+[node name="LeftArmJoint" type="PinJoint2D" parent="."]
+position = Vector2( -32, -64 )
+node_a = NodePath("../LeftArm")
+node_b = NodePath("..")
+softness = 5.0
+
+[node name="RightArmJoint" type="PinJoint2D" parent="."]
+position = Vector2( 32, -64 )
+node_a = NodePath("../RightArm")
+node_b = NodePath("..")
+softness = 5.0
+
+[node name="LeftLegJoint" type="PinJoint2D" parent="."]
+position = Vector2( -16, 44 )
+node_a = NodePath("../LeftLeg")
+node_b = NodePath("..")
+softness = 5.0
+
+[node name="RightLegJoint" type="PinJoint2D" parent="."]
+position = Vector2( 16, 44 )
+node_a = NodePath("../RightLeg")
+node_b = NodePath("..")
+softness = 5.0
+
+[node name="Sprite" type="Sprite" parent="." groups=[
+"Glow",
+]]
+material = ExtResource( 4 )
+position = Vector2( 0, -8 )
+scale = Vector2( 1, 1.75 )
+texture = ExtResource( 2 )
+[connection signal="input_event" from="Area2D" to="." method="_on_Area2D_input_event"]
+[connection signal="input_event" from="Head/Area2D" to="." method="_on_Area2D_input_event"]
+[connection signal="input_event" from="LeftArm/Area2D" to="." method="_on_Area2D_input_event"]
+[connection signal="input_event" from="RightArm/Area2D" to="." method="_on_Area2D_input_event"]
+[connection signal="input_event" from="LeftLeg/Area2D" to="LeftLeg" method="_on_Area2D_input_event"]
+[connection signal="input_event" from="RightLeg/Area2D" to="." method="_on_Area2D_input_event"]

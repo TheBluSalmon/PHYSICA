@@ -4,7 +4,7 @@ This repository contains all the scripts and scenes that were used for PHYSICA.
 This program was made for EVARIS, an OS meant for educational centers, schools and colleges.
 
 # EXTERNAL LINKS
-https://simonknowsstuff.itch.io/physica
+https://simonknowsstuff.itch.io/physica ||
 https://www.teamklestron.com/physica
 
 # HOW TO USE

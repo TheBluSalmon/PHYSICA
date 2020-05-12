@@ -15,4 +15,4 @@ https://www.teamklestron.com/physica
 # ADDITIONAL INFO:
 This project is still in development. More updates will come soon :)
 
-https://img.itch.zone/aW1hZ2UvNjQxNjU3LzM0MzUzMTkucG5n/347x500/dEh0qX.png
+![PHYSICA LOGO](https://img.itch.zone/aW1hZ2UvNjQxNjU3LzM0MzUzMTkucG5n/347x500/dEh0qX.png)
